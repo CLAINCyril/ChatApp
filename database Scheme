@@ -1,0 +1,28 @@
+CREATE TABLE Utilisateurs (
+  id INTEGER PRIMARY KEY,
+  nom_utilisateur VARCHAR(255),
+  adresse_email VARCHAR(255),
+  mot_de_passe VARCHAR(255)
+);
+
+CREATE TABLE Groupes (
+  id INTEGER PRIMARY KEY,
+  nom VARCHAR(255),
+  liste_utilisateurs VARCHAR(255)
+);
+
+CREATE TABLE Messages (
+  id INTEGER PRIMARY KEY,
+  expéditeur INTEGER,
+  destinataire INTEGER,
+  contenu TEXT,
+  date_envoi DATETIME
+);
+
+CREATE TABLE Appels (
+  id INTEGER PRIMARY KEY,
+  utilisateur_appelant INTEGER,
+  utilisateur_appelé INTEGER,
+  durée INTEGER,
+  date DATETIME
+);
