@@ -1,0 +1,54 @@
+--DROP SCHEMA IF EXISTS `computer-database-db`;
+CREATE SCHEMA IF NOT EXISTS `simple-chat-app`;
+USE `simple-chat-app`;
+  
+DROP TABLE IF EXISTS Utilisateurs;
+DROP TABLE IF EXISTS Groupes;
+DROP TABLE IF EXISTS Messages;
+DROP TABLE IF EXISTS Appels;
+
+CREATE TABLE Utilisateurs (
+  id INTEGER PRIMARY KEY,
+  nom_utilisateur VARCHAR(255),
+  adresse_email VARCHAR(255),
+  mot_de_passe VARCHAR(255)
+);
+
+CREATE TABLE Groupes (
+  id INTEGER PRIMARY KEY,
+  nom VARCHAR(255),
+  liste_utilisateurs VARCHAR(255)
+);
+
+CREATE TABLE Messages (
+  id INTEGER PRIMARY KEY,
+  expéditeur INTEGER,
+  destinataire INTEGER,
+  contenu TEXT,
+  date_envoi DATETIME
+);
+
+CREATE TABLE Appels (
+  id INTEGER PRIMARY KEY,
+  utilisateur_appelant INTEGER,
+  utilisateur_appelé INTEGER,
+  durée INTEGER,
+  date DATETIME
+);
+
+
+INSERT INTO Utilisateurs (id, nom_utilisateur, adresse_email, mot_de_passe)
+VALUES (1, 'utilisateur1', 'utilisateur1@example.com', 'motdepasse1'),
+       (2, 'utilisateur2', 'utilisateur2@example.com', 'motdepasse2'),
+       (3, 'utilisateur3', 'utilisateur3@example.com', 'motdepasse3');
+       
+INSERT INTO Groupes (id, nom, liste_utilisateurs)
+VALUES (1, 'Groupe de chat 1', '1,2,3');
+
+INSERT INTO Messages (id, expéditeur, destinataire, contenu, date_envoi)
+VALUES (1, 1, 2, 'Salut, comment ça va ?', '2022-01-01 12:00:00'),
+       (2, 2, 1, 'Salut, ça va bien, et toi ?', '2022-01-01 12:01:00'),
+       (3, 1, 2, 'Ça va bien aussi, merci !', '2022-01-01 12:02:00');
+INSERT INTO Appels (id, utilisateur_appelant, utilisateur_appelé, durée, date)
+VALUES (1, 1, 2, 60, '2022-01-01 12:00:00'),
+       (2, 2, 1, 30, '2022-01-01 12:30:00');
